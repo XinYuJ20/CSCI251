@@ -96,6 +96,7 @@ namespace Project1 {
 
                 Parallel.ForEach(subdirectories, parallelThread );
 
+                // files = array length from GetFiles
                 string[] files = Directory.GetFiles(pathName);
                 var tempFile = files.Length;
 
