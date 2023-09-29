@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Xin Yu\\COPADS\\CSCI251\\project1\\project1.csproj",
+      "projectUniqueName": "c:\\Users\\Xin Yu\\Documents\\GitHub\\CSCI251\\project1\\project1.csproj",
       "projectName": "project1",
-      "projectPath": "c:\\Users\\Xin Yu\\COPADS\\CSCI251\\project1\\project1.csproj",
+      "projectPath": "c:\\Users\\Xin Yu\\Documents\\GitHub\\CSCI251\\project1\\project1.csproj",
       "packagesPath": "C:\\Users\\Xin Yu\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Xin Yu\\COPADS\\CSCI251\\project1\\obj\\",
+      "outputPath": "c:\\Users\\Xin Yu\\Documents\\GitHub\\CSCI251\\project1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Xin Yu\\AppData\\Roaming\\NuGet\\NuGet.Config"

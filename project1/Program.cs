@@ -150,11 +150,6 @@ namespace Project1 {
                 return;
             }
 
-            if (!Directory.Exists(pathName)) {
-                Console.WriteLine("bad file path");
-                return;
-            }
-
             Console.WriteLine("Directory '" + pathName + "':");
             Console.WriteLine(" ");
 
