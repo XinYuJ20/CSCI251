@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Xin Yu\\COPADS\\CSCI251\\project1\\du.csproj",
-      "projectName": "du",
-      "projectPath": "C:\\Users\\Xin Yu\\COPADS\\CSCI251\\project1\\du.csproj",
+      "projectUniqueName": "C:\\Users\\Xin Yu\\COPADS\\CSCI251\\project2\\PrimeGen\\PrimeGen.csproj",
+      "projectName": "PrimeGen",
+      "projectPath": "C:\\Users\\Xin Yu\\COPADS\\CSCI251\\project2\\PrimeGen\\PrimeGen.csproj",
       "packagesPath": "C:\\Users\\Xin Yu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Xin Yu\\COPADS\\CSCI251\\project1\\obj\\",
+      "outputPath": "C:\\Users\\Xin Yu\\COPADS\\CSCI251\\project2\\PrimeGen\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Xin Yu\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -6,6 +6,7 @@
 //
 
 using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 
@@ -13,7 +14,7 @@ using System.IO;
 namespace Project1 {
 
     /// <summary>
-    /// 
+    /// main program of the project
     /// </summary>
     public class Program{
         private const string helpMessage =  "Usage: du [-s] [-p] [-b] <path> \n" +
@@ -52,29 +53,25 @@ namespace Project1 {
         /// Searches through the directory recursively in single threaded mode
         /// </summary>
         /// <param name="args"></param> 
-        public static void singleThread( string pathName ){
+        public static void singleThread( DirectoryInfo pathName ){
 
             try {  
         
-                foreach (string subdirectory in Directory.GetDirectories(pathName)) {   // returns subdirectories 
+                foreach (DirectoryInfo subdirectory in pathName.GetDirectories() ) {   // returns subdirectories 
                         totalFolders += 1;    // add to folder count
                         singleThread( subdirectory );
                 }
 
-                foreach(var file in Directory.GetFiles(pathName)){     // for each file in files
+                foreach(var file in pathName.GetFiles() ){     // for each file in files
                     try {
-                        var f = new FileInfo(file);
 
                         totalFiles += 1;    // add to file count
-                        totalBytes += f.Length;  // add to total byte count
+                        totalBytes += file.Length;  // add to total byte count
                     }
-                    catch ( UnauthorizedAccessException ) { // catch and skip over files that cant be accessed
-                    }
+                    catch ( UnauthorizedAccessException ) { } // catch and skip over files that cant be accessed
                 }
             }
-            catch ( UnauthorizedAccessException ) {         // catch and skip over directories that cant be accessed
-
-            }
+            catch ( UnauthorizedAccessException ) { }         // catch and skip over directories that cant be accessed
 
         }
 
@@ -82,43 +79,36 @@ namespace Project1 {
         /// Searches through the directory recursively in single threaded mode
         /// </summary>
         /// <param name="pathName"></param>
-        public static void parallelThread( string pathName ){
+        public static void parallelThread( DirectoryInfo pathName ){
 
             try{ 
                 
                 // for number of subdirectories in a directory
-                string[] subdirectories = Directory.GetDirectories(pathName);
+                var subdirectories = pathName.GetDirectories();
 
                 // variables created for each instance of a thread
-                var tempFolder = subdirectories.Length;
-                long tempByte = 0;
-
+                var tempFolder = subdirectories.Length; 
 
                 Parallel.ForEach(subdirectories, parallelThread );
 
                 // files = array length from GetFiles
-                string[] files = Directory.GetFiles(pathName);
+                var files = pathName.GetFiles();
                 var tempFile = files.Length;
-
+               
                 Parallel.ForEach(files, file => {           // for each file in files
                     try{
-                        var fileSize = new FileInfo(file).Length;
-
-                        Interlocked.Add(ref tempByte, fileSize);
+                        var fileSize = file.Length;
+                        Interlocked.Add(ref totalBytes, fileSize); 
+                       
                     }
-                    catch ( UnauthorizedAccessException ) {             // catch and skip over files that cant be accessed
-                    }
+                    catch ( UnauthorizedAccessException ) {}             // catch and skip over files that cant be accessed
                 } );
                 
-                // directory to add to the total count instead of the files
-                Interlocked.Add(ref totalBytes, tempByte);
+                // directory to add to the total count instead of the files  
                 Interlocked.Add(ref totalFiles, tempFile);
                 Interlocked.Add(ref totalFolders, tempFolder);
             }
-
-            catch (  UnauthorizedAccessException ){                 // catch and skip over directories that cant be accessed
-
-            }
+            catch (  UnauthorizedAccessException ){}               // catch and skip over directories that cant be accessed
         }
 
         /// <summary>
@@ -126,13 +116,13 @@ namespace Project1 {
         /// </summary>
         /// <param name="pathName"></param>
         /// <param name="timer"></param>
-        public static void printResults(TimeSpan timer, string method){
+        public static void printResults(double timer, string method){
             Console.WriteLine( method + "Calculated in: " + timer + "s");
             Console.WriteLine( totalFolders.ToString("#,##0") + " folders, " + totalFiles.ToString("#,##0") + " files, " + totalBytes.ToString("#,##0") + " bytes");
         }
 
         /// <summary>
-        /// main program to run
+        /// starts the threading process
         /// </summary>
         /// <param name="userInput"></param>
         public static void Main(string[] userInput)
@@ -156,25 +146,28 @@ namespace Project1 {
 
             // run in single threaded mode
             if ( method == "-s") {
-                var start = DateTime.Now;
+              
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
 
-                singleThread( pathName );
+                singleThread( new DirectoryInfo( pathName) );
 
-                var end = DateTime.Now; 
-                var timer = end - start;
-
+                sw.Stop();
+                var timer = sw.Elapsed.TotalSeconds;
+                
                 printResults( timer, "Sequential ");
 
             }
 
             // run in parallel mode
             if ( method == "-p") {
-                var start = DateTime.Now;
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
 
-                parallelThread( pathName );
-          
-                var end = DateTime.Now; 
-                var timer = end - start;
+                parallelThread( new DirectoryInfo( pathName) );
+              
+                sw.Stop();
+                var timer = sw.Elapsed.TotalSeconds;
 
                 printResults( timer, "Parallel ");
             }
@@ -183,25 +176,30 @@ namespace Project1 {
             if ( method == "-b") {
 
                 // method for parallel thread
-                var start = DateTime.Now;
-                parallelThread( pathName );
-                var end = DateTime.Now; 
-                var timer = end - start;
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+
+                parallelThread( new DirectoryInfo( pathName) );
+
+                sw.Stop();
+                var timer = sw.Elapsed.TotalSeconds;
+
                 printResults( timer, "Parallel ");
                 Console.WriteLine(" ");
 
                 resetVariables();
 
                 // method for single thread
-                var start2 = DateTime.Now;
-                singleThread( pathName );
-                var end2 = DateTime.Now; 
-                var timer2 = end2 - start2;
+                Stopwatch sw2 = new Stopwatch();
+                sw2.Start();
+
+                singleThread(  new DirectoryInfo( pathName) );
+
+                sw2.Stop();
+                var timer2 = sw2.Elapsed.TotalSeconds; // is that fast enough tho
 
                 printResults( timer2, "Sequential ");
             }
-
-
 
         }
     }    

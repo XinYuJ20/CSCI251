@@ -1,0 +1,14 @@
+C:\Users\Xin Yu\COPADS\CSCI251\project2\PrimeGen\bin\Debug\net7.0\PrimeGen.exe
+C:\Users\Xin Yu\COPADS\CSCI251\project2\PrimeGen\bin\Debug\net7.0\PrimeGen.deps.json
+C:\Users\Xin Yu\COPADS\CSCI251\project2\PrimeGen\bin\Debug\net7.0\PrimeGen.runtimeconfig.json
+C:\Users\Xin Yu\COPADS\CSCI251\project2\PrimeGen\bin\Debug\net7.0\PrimeGen.dll
+C:\Users\Xin Yu\COPADS\CSCI251\project2\PrimeGen\bin\Debug\net7.0\PrimeGen.pdb
+C:\Users\Xin Yu\COPADS\CSCI251\project2\PrimeGen\obj\Debug\net7.0\PrimeGen.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Xin Yu\COPADS\CSCI251\project2\PrimeGen\obj\Debug\net7.0\PrimeGen.AssemblyInfoInputs.cache
+C:\Users\Xin Yu\COPADS\CSCI251\project2\PrimeGen\obj\Debug\net7.0\PrimeGen.AssemblyInfo.cs
+C:\Users\Xin Yu\COPADS\CSCI251\project2\PrimeGen\obj\Debug\net7.0\PrimeGen.csproj.CoreCompileInputs.cache
+C:\Users\Xin Yu\COPADS\CSCI251\project2\PrimeGen\obj\Debug\net7.0\PrimeGen.dll
+C:\Users\Xin Yu\COPADS\CSCI251\project2\PrimeGen\obj\Debug\net7.0\refint\PrimeGen.dll
+C:\Users\Xin Yu\COPADS\CSCI251\project2\PrimeGen\obj\Debug\net7.0\PrimeGen.pdb
+C:\Users\Xin Yu\COPADS\CSCI251\project2\PrimeGen\obj\Debug\net7.0\PrimeGen.genruntimeconfig.cache
+C:\Users\Xin Yu\COPADS\CSCI251\project2\PrimeGen\obj\Debug\net7.0\ref\PrimeGen.dll

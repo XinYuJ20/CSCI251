@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Xin Yu\\COPADS\\CSCI251\\project1\\project1.csproj": {}
+    "C:\\Users\\Xin Yu\\COPADS\\CSCI251\\project2\\primegen\\PrimeGen.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Xin Yu\\COPADS\\CSCI251\\project1\\project1.csproj": {
+    "C:\\Users\\Xin Yu\\COPADS\\CSCI251\\project2\\primegen\\PrimeGen.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Xin Yu\\COPADS\\CSCI251\\project1\\project1.csproj",
-        "projectName": "project1",
-        "projectPath": "C:\\Users\\Xin Yu\\COPADS\\CSCI251\\project1\\project1.csproj",
+        "projectUniqueName": "C:\\Users\\Xin Yu\\COPADS\\CSCI251\\project2\\primegen\\PrimeGen.csproj",
+        "projectName": "PrimeGen",
+        "projectPath": "C:\\Users\\Xin Yu\\COPADS\\CSCI251\\project2\\primegen\\PrimeGen.csproj",
         "packagesPath": "C:\\Users\\Xin Yu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Xin Yu\\COPADS\\CSCI251\\project1\\obj\\",
+        "outputPath": "C:\\Users\\Xin Yu\\COPADS\\CSCI251\\project2\\primegen\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Xin Yu\\AppData\\Roaming\\NuGet\\NuGet.Config"
