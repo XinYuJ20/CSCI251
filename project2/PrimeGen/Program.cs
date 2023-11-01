@@ -81,8 +81,6 @@ namespace Program
             } while ( a < 2 || a >= byteCount - 2);
             return a;
         }
-
-
     }
 
     /// <summary>
@@ -94,35 +92,30 @@ namespace Program
         /// generate random numbers to be tested for primeality
         /// </summary>
         /// <param name="byteCount"> length of the number to generate </param>
-        /// <param name="primeCount"> amount of primes to generate </param>
-        public void generateNumber( int byteCount, int primeCount ) {
-            object printLock  = new();
-            int i = 0 ;
-                do{
-                    Parallel.For( 0, 10, l => {
-                        bool isPrime= false;
-                        BigInteger number = 0;
+        public BigInteger generateNumber( int byteCount ) {
+            BigInteger prime = 0;
 
-                        byte[] test =  RandomNumberGenerator.GetBytes( byteCount );
-                        number = new BigInteger( test.Concat( new byte[] {0} ).ToArray() );
-                        isPrime = number.isProbablyPrime();
+            
+            int[] primeList = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
 
-                        if ( isPrime ){
-                            lock( printLock ) {
-                                if ( i < primeCount ){
-                                    Console.WriteLine( i + 1 + ": " + number);
-                                    Interlocked.Increment(ref i);
-                                }
-                                if ( i < primeCount ){
-                                    Console.WriteLine(" ");
-                                }
-                               
-                            }
-                        }
-                    });
-                
+            Parallel.For( 0, int.MaxValue, (j, state) => {
+                byte[] test =  RandomNumberGenerator.GetBytes( byteCount );
+                BigInteger number = new BigInteger( test.Concat( new byte[] {0} ).ToArray() );
+
+                foreach (int omelet in primeList){
+                    if (number % omelet == 0){
+                        return;
+                    }
                 }
-                while( i < primeCount );
+
+                bool isPrime = number.isProbablyPrime();                
+
+                if ( isPrime ){
+                    prime = number;
+                    state.Stop();
+                }
+            });
+            return prime;
         }
     }
     
@@ -170,7 +163,16 @@ namespace Program
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
-            findNum.generateNumber( byteCount, primeCount ) ;
+            for (int i = 0; i < primeCount; i++)
+            {
+                BigInteger prime = findNum.generateNumber( byteCount );
+                if ( i < primeCount ){
+                        Console.WriteLine( i + 1 + ": " + prime);
+                    }
+                if ( i < primeCount - 1 ){
+                        Console.WriteLine(" ");
+                    }
+            }
 
             sw.Stop();
             var timer = sw.Elapsed;
