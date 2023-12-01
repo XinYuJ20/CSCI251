@@ -164,6 +164,7 @@ namespace Program
             do{
                 e = findNum.generateNumber(2);
             } while (e <= 2 && e >= r);
+        
 
             d = modInverse(e,r);
             
@@ -174,7 +175,6 @@ namespace Program
                 var eByteCount = BitConverter.GetBytes(e.GetByteCount()).ToArray();
                 var eByte = Enumerable.Repeat<Byte>(0, 4 - eByteCount.Length).Concat(eByteCount).Reverse().ToArray();
                 
-                Console.WriteLine(e.GetByteCount());
                 var keyE = e.ToByteArray().ToArray() ; 
 
                 var nByteCount = BitConverter.GetBytes(n.GetByteCount());
@@ -370,7 +370,6 @@ namespace Program
                 using HttpResponseMessage response = await client.GetAsync("http://kayrun.cs.rit.edu:5000/Key/" + email);
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(responseBody);
 
                 File.WriteAllText(email + ".key", responseBody);
             }
@@ -541,7 +540,7 @@ namespace Program
                         break;
                     }
                     KeyGeneration generateKey = new();
-                    int keysize = int.Parse(userInput[1]);
+                    int keysize = int.Parse(userInput[1]) / 8;
                     generateKey.KeyGen(keysize);
                     break;
                 case "sendKey":
